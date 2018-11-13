@@ -1,6 +1,7 @@
 package com.example.sjoerd.friendsr;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +13,9 @@ import android.widget.TextView;
 public class ProfileActivity extends AppCompatActivity {
 
     private Friend retrievedFriend;
+
+    SharedPreferences.Editor editor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,8 +39,13 @@ public class ProfileActivity extends AppCompatActivity {
         bio.setText(retrievedFriend.getBio());
 
         // set rating
+        SharedPreferences prefs = getSharedPreferences("settings", MODE_PRIVATE);
+        editor = prefs.edit();
+        editor.apply();
+
         RatingBar rating = findViewById(R.id.ratingBar);
-        rating.setRating(retrievedFriend.getRating());
+        rating.setOnRatingBarChangeListener(new RatingBarClickListener());
+        rating.setRating(prefs.getFloat(retrievedFriend.getName(), 0));
     }
 
     // implements ratingBar clicklistener
@@ -44,9 +53,8 @@ public class ProfileActivity extends AppCompatActivity {
         @Override
         public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
             RatingBar rating = findViewById(R.id.ratingBar);
-            rating.setRating(v);
+            editor.putFloat(retrievedFriend.getName(), v);
+            editor.apply();
         }
     }
-
-
 }
