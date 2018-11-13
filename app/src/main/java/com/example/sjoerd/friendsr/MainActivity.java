@@ -3,8 +3,9 @@ package com.example.sjoerd.friendsr;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.GridView;
-
 import java.util.ArrayList;
+import android.widget.AdapterView;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,11 +26,14 @@ public class MainActivity extends AppCompatActivity {
             arrayListFriends.add(friend);
         }
 
+        // instantiate FriendsAdapter
+        FriendsAdapter adapter = new FriendsAdapter(this, R.layout.grid_item, arrayListFriends);
+
+        // show on grid
+        GridView gv = findViewById(R.id.gv);
+        gv.setAdapter(adapter);
+
     }
 
-    // instantiate FriendsAdapter
-    FriendsAdapter adapter = new FriendsAdapter(this, R.layout.grid_item, arrayListFriends);
 
-    // show on grid
-    GridView gv = findViewById(R.id.gv);
 }
