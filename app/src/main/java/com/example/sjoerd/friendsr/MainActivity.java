@@ -6,6 +6,7 @@ import android.widget.GridView;
 import java.util.ArrayList;
 import android.widget.AdapterView;
 import android.view.View;
+import android.util.Log;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,7 +34,16 @@ public class MainActivity extends AppCompatActivity {
         GridView gv = findViewById(R.id.gv);
         gv.setAdapter(adapter);
 
+        gv.setOnItemClickListener(new GridItemClickListener());
+
     }
 
+    // implements onClickListener
+    private class GridItemClickListener implements AdapterView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            Log.i("GridItemClickListener", "working");
+        }
+    }
 
 }
