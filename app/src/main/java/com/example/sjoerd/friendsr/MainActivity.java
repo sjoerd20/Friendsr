@@ -1,5 +1,6 @@
 package com.example.sjoerd.friendsr;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.GridView;
@@ -46,7 +47,10 @@ public class MainActivity extends AppCompatActivity {
             // extract friend object
             Friend clickedFriend = (Friend) adapterView.getItemAtPosition(i);
 
-            Log.i("GridItemClickListener", clickedFriend.getName());
+            // pass info to ProfileActivity
+            Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+            intent.putExtra("clicked_friend", clickedFriend);
+            startActivity(intent);
         }
     }
 
