@@ -42,7 +42,11 @@ public class MainActivity extends AppCompatActivity {
     private class GridItemClickListener implements AdapterView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-            Log.i("GridItemClickListener", "working");
+
+            // extract friend object
+            Friend clickedFriend = (Friend) adapterView.getItemAtPosition(i);
+
+            Log.i("GridItemClickListener", clickedFriend.getName());
         }
     }
 
