@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import android.widget.AdapterView;
 import android.view.View;
 import android.util.Log;
+import android.widget.RatingBar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
         gv.setAdapter(adapter);
 
         gv.setOnItemClickListener(new GridItemClickListener());
-
     }
 
     // implements onClickListener
@@ -53,5 +53,4 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
     }
-
 }

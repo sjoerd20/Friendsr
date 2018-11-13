@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 public class ProfileActivity extends AppCompatActivity {
 
+    private Friend retrievedFriend;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,7 +19,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         // get intent from MainActivity
         Intent intent = getIntent();
-        Friend retrievedFriend = (Friend) intent.getSerializableExtra("clicked_friend");
+        retrievedFriend = (Friend) intent.getSerializableExtra("clicked_friend");
 
         // draw image
         ImageView image = findViewById(R.id.imageView);
@@ -37,4 +38,15 @@ public class ProfileActivity extends AppCompatActivity {
         RatingBar rating = findViewById(R.id.ratingBar);
         rating.setRating(retrievedFriend.getRating());
     }
+
+    // implements ratingBar clicklistener
+    private class RatingBarClickListener implements RatingBar.OnRatingBarChangeListener {
+        @Override
+        public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
+            RatingBar rating = findViewById(R.id.ratingBar);
+            rating.setRating(v);
+        }
+    }
+
+
 }
